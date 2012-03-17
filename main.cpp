@@ -52,7 +52,7 @@ void init(){
     letter* letter8 = new letter(4, "hobby", "Rachel");
     letter* letter9 = new letter(0, "family", "Sam");
     letter* letter10 = new letter(7, "work", "Lio");
-
+	
     tray_work.push(letter1);
     tray_work.push(letter2);
     tray_work.push(letter3);
@@ -75,7 +75,42 @@ void printTrays(){
      *
      * write your implementation here
      */
-    
+	
+	letter* temp;
+	
+	std::cout << "Tray Work:" << std::endl;
+	while(!tray_work.empty())
+	{
+		temp = tray_work.top();
+		tray_work.pop();
+		letter tm = *temp;
+		std::cout << "\tSender: " << tm.getSender() << "\n\t\tPriority: " << tm.getPriority() << "\n\t\tTray: " << tm.getTray() << std::endl;
+	}
+	std::cout << "\n" << std::endl;
+
+	std::cout << "Tray Family:" << std::endl;
+	while(!tray_family.empty())
+	{
+		temp = tray_family.top();
+		tray_family.pop();
+		letter tm = *temp;
+		std::cout << "\tSender: " << tm.getSender() << "\n\t\tPriority: " << tm.getPriority() << "\n\t\tTray: " << tm.getTray() << std::endl;
+	}
+	std::cout << "\n" << std::endl;
+
+	std::cout << "Tray Hobby:" << std::endl;
+	while(tray_hobby.size() != 0)
+	{
+		temp = tray_hobby.top();
+		tray_hobby.pop();
+		letter tm = *temp;
+		std::cout << "\tSender: " << tm.getSender() << "\n\t\tPriority: " << tm.getPriority() << "\n\t\tTray: " << tm.getTray() << std::endl;
+	}
+
+	delete temp;
+	std::cout << "\n" << std::endl;
+
+    init();		//restore default situation
 }
 
 
@@ -87,7 +122,100 @@ void cleanUp(){
      * write your implementation here
      */
     
-    }
+	std::stack<letter*> tray_temp_w;
+	std::stack<letter*> tray_temp_f;
+	std::stack<letter*> tray_temp_h;
+
+	letter* temp;
+	
+	//save letter in the right temp tray
+	while(!tray_work.empty())
+	{
+		temp = tray_work.top();
+		letter tm = *temp;
+		if(tm.getTray() == "work")
+		{
+			tray_temp_w.push(temp);
+			tray_work.pop();
+		}
+		else if(tm.getTray() == "family")
+		{
+			tray_temp_f.push(temp);
+			tray_work.pop();
+		}
+		else
+		{
+			tray_temp_h.push(temp);
+			tray_work.pop();
+		}
+	}
+	
+	while(!tray_family.empty())
+	{
+		temp = tray_family.top();
+		letter tm = *temp;
+		if(tm.getTray() == "work")
+		{
+			tray_temp_w.push(temp);
+			tray_family.pop();
+		}
+		else if(tm.getTray() == "family")
+		{
+			tray_temp_f.push(temp);
+			tray_family.pop();
+		}
+		else
+		{
+			tray_temp_h.push(temp);
+			tray_family.pop();
+		}
+	}
+
+	while(!tray_hobby.empty())
+	{
+		temp = tray_hobby.top();
+		letter tm = *temp;
+		if(tm.getTray() == "work")
+		{
+			tray_temp_w.push(temp);
+			tray_hobby.pop();
+		}
+		else if(tm.getTray() == "family")
+		{
+			tray_temp_f.push(temp);
+			tray_hobby.pop();
+		}
+		else
+		{
+			tray_temp_h.push(temp);
+			tray_hobby.pop();
+		}
+	}
+
+	//---copy from temp-tray to right-tray
+
+	while(!tray_temp_f.empty())
+	{
+		temp = tray_temp_f.top();
+		tray_family.push(temp);
+		tray_temp_f.pop();
+	}
+	while(!tray_temp_w.empty())
+	{
+		temp = tray_temp_w.top();
+		tray_work.push(temp);
+		tray_temp_w.pop();
+	}
+	while(!tray_temp_h.empty())
+	{
+		temp = tray_temp_h.top();
+		tray_hobby.push(temp);
+		tray_temp_h.pop();
+	}
+
+	delete temp; // free memory
+
+}
 
 std::stack<letter*> orderPriority(std::stack<letter*> tray_){
     /* TODO 3)
@@ -98,5 +226,7 @@ std::stack<letter*> orderPriority(std::stack<letter*> tray_){
      *
      * write your implementation here     
      */
-    
+	std::stack<letter*> tmp;
+
+    return tmp;
 }
