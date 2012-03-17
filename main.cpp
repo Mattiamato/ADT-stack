@@ -127,7 +127,7 @@ void cleanUp(){
 	std::stack<letter*> tray_temp_h;
 
 	letter* temp;
-	
+	// DECISAMENTE TROPPO LENTO... FACILE DA METTERE A POSTO
 	//save letter in the right temp tray
 	while(!tray_work.empty())
 	{
