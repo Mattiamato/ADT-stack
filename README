@@ -1,17 +1,1 @@
-Task C): ADT Stack
-
-The aim of this task is to get an overview of the ADT Stack. You were in the holidays and your assistant made a mess with your mails. You have three trays, each for its own specific purpose. So all the letters have a purpose and therefore have to be in the
-corresponding right tray.
-
-1) printTrays()
-
-In the file main:cpp you have the skeleton of a method named printTrays() which should
-print an simple overview of the trays with the letters in it on the standard output.
-
-2) cleanUp - Algorithm
-
-We provide you a function skeleton named cleanUp() which should clean up the mess
-your assistant made. After this method has been called, every letter should be in the
-right tray.
-
-Hint: Use a temporary tray to order all the letters.
+Qui le modifiche per il metodo CLEANUP
